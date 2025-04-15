@@ -1,6 +1,43 @@
 -- ~/.config/nvim/lua/plugins/ui.lua
 
 return {
+    -- Theme Management with Themery
+    {
+        "zaldih/themery.nvim",
+        priority = 1001, -- Higher priority than themes
+        config = function()
+            require("themery").setup({
+                themes = {
+                    {
+                        name = "Catppuccin Mocha",
+                        colorscheme = "catppuccin",
+                        before = [[vim.g.catppuccin_flavour = "mocha"]],
+                    },
+                    {
+                        name = "Catppuccin Macchiato",
+                        colorscheme = "catppuccin",
+                        before = [[vim.g.catppuccin_flavour = "macchiato"]],
+                    },
+                    {
+                        name = "Catppuccin Frappe",
+                        colorscheme = "catppuccin",
+                        before = [[vim.g.catppuccin_flavour = "frappe"]],
+                    },
+                    {
+                        name = "Catppuccin Latte",
+                        colorscheme = "catppuccin",
+                        before = [[vim.g.catppuccin_flavour = "latte"]],
+                    },
+                },
+                themeConfigFile = vim.fn.stdpath("config") .. "/lua/core/theme.lua",
+                livePreview = true,
+            })
+
+            -- Add keybinding for Themery
+            vim.keymap.set("n", "<leader>th", ":Themery<CR>", { desc = "Theme Selector", silent = true })
+        end,
+    },
+
     -- Theme
     {
         "catppuccin/nvim",
@@ -8,10 +45,32 @@ return {
         priority = 1000, -- Ensure it loads first
         config = function()
             require("catppuccin").setup({
-                flavour = "mocha", -- latte, frappe, macchiato, mocha
-                -- other configurations...
+                -- Theme configuration options
+                integrations = {
+                    cmp = true,
+                    gitsigns = true,
+                    nvimtree = true,
+                    treesitter = true,
+                    which_key = true,
+                    indent_blankline = { enabled = true },
+                    native_lsp = {
+                        enabled = true,
+                        virtual_text = {
+                            errors = { "italic" },
+                            hints = { "italic" },
+                            warnings = { "italic" },
+                            information = { "italic" },
+                        },
+                        underlines = {
+                            errors = { "underline" },
+                            hints = { "underline" },
+                            warnings = { "underline" },
+                            information = { "underline" },
+                        },
+                    },
+                },
             })
-            vim.cmd.colorscheme("catppuccin")
+            -- Colorscheme is now set by Themery
         end,
     },
 
