@@ -142,10 +142,7 @@ If you encounter issues:
 
 ## Todo
 
+- [ ] Add a functional cmd palette
 - [ ] Add MCP capability with instructions for adding MCP hubs
 - [ ] Complete Avante configuration with examples for different providers
 - [ ] Add more language-specific configurations
-
-## License
-
-This configuration is available under the MIT License.

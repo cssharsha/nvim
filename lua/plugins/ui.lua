@@ -253,17 +253,64 @@ return {
             words = { enabled = true },
         },
     },
-    {
-        "hachy/cmdpalette.nvim",
-        dependencies = {
-            "nvim-telescope/telescope.nvim",
-            "nvim-lua/plenary.nvim",
-        },
-        config = function()
-            require("cmdpalette").setup({
-                border = "rounded",
-            })
-        end,
-        vim.keymap.set("n", ":", "<Plug>(cmdpalette)"),
-    },
+    -- TODO: Get a proper cmdpalette working
+    -- {
+    --     "hachy/cmdpalette.nvim",
+    --     config = function()
+    --         require("cmdpalette").setup({
+    --             win = {
+    --                 height = 0.3,
+    --                 width = 0.8,
+    --                 border = "rounded",
+    --                 row_off = -2,
+    --                 -- Title requires nvim-0.9 or higher.
+    --                 title = "Cmdpalette",
+    --                 title_pos = "center",
+    --             },
+    --             sign = {
+    --                 text = ":",
+    --             },
+    --             buf = {
+    --                 filetype = "vim",
+    --                 syntax = "vim",
+    --             },
+    --             delete_confirm = true,
+    --             show_title = true,
+    --         })
+    --     end,
+    --     vim.keymap.set("n", ":", "<Plug>(cmdpalette)"),
+    --     require("cmdpalette").setup {
+    --         buf = {
+    --             filetype = "cmdpalette",
+    --         },
+    --     },
+
+    --     require("cmp").setup.filetype("cmdpalette", {
+    --         sources = {
+    --             { name = "cmdline" },
+    --         },
+    --     }),
+    --     vim.api.nvim_create_autocmd("filetype", {
+    --         pattern = "cmdpalette",
+    --         callback = function()
+    --             vim.keymap.set("i", "<Tab>", function()
+    --                 require("cmp").complete()
+    --             end, { buffer = true })
+    --         end,
+    --     })
+    -- }
+    -- {
+    --     "koenverburg/cmd-palette.nvim",
+    --     -- dependencies = {
+    --     --     "nvim-telescope/telescope.nvim",
+    --     --     "nvim-lua/plenary.nvim",
+    --     -- },
+    --     config = function()
+    --         require("cmd-palette").setup({
+    --             { label = "PeepsightToggle", cmd = "Peepsight" },
+    --             { label = "Greeting",        callback = function() print("Hello, World!") end },
+    --         })
+    --     end,
+    --     vim.keymap.set("n", ":", "<Plug>(cmdpalette)"),
+    -- },
 }
