@@ -1,79 +1,27 @@
 -- ~/.config/nvim/lua/plugins/ui.lua
 
 return {
-    -- Theme Management with Themery
+    -- == Themes ==
+    -- Load individual theme plugin specifications
+    require("plugins.themes.catppuccin"),
+    require("plugins.themes.gruvbox"), -- Example
+    -- require("plugins.your_other_theme"),
+
+    -- == Theme Manager ==
     {
         "zaldih/themery.nvim",
-        priority = 1001, -- Higher priority than themes
+        -- Dependencies ensure themes are loaded before Themery's config runs
+        dependencies = {
+            "catppuccin/nvim",
+            "gruvbox-community/gruvbox", -- Example
+            -- Add other theme plugin sources here corresponding to plugins required above
+        },
+        priority = 1001, -- Ensure it loads after themes but config runs later
+        -- The config function now simply calls the dedicated setup function
         config = function()
-            require("themery").setup({
-                themes = {
-                    {
-                        name = "Catppuccin Mocha",
-                        colorscheme = "catppuccin",
-                        before = [[vim.g.catppuccin_flavour = "mocha"]],
-                    },
-                    {
-                        name = "Catppuccin Macchiato",
-                        colorscheme = "catppuccin",
-                        before = [[vim.g.catppuccin_flavour = "macchiato"]],
-                    },
-                    {
-                        name = "Catppuccin Frappe",
-                        colorscheme = "catppuccin",
-                        before = [[vim.g.catppuccin_flavour = "frappe"]],
-                    },
-                    {
-                        name = "Catppuccin Latte",
-                        colorscheme = "catppuccin",
-                        before = [[vim.g.catppuccin_flavour = "latte"]],
-                    },
-                },
-                themeConfigFile = vim.fn.stdpath("config") .. "/lua/core/theme.lua",
-                livePreview = true,
-            })
-
-            -- Add keybinding for Themery
-            vim.keymap.set("n", "<leader>th", ":Themery<CR>", { desc = "Theme Selector", silent = true })
+            require("config.themery").setup()
         end,
     },
-
-    -- Theme
-    {
-        "catppuccin/nvim",
-        name = "catppuccin",
-        priority = 1000, -- Ensure it loads first
-        config = function()
-            require("catppuccin").setup({
-                -- Theme configuration options
-                integrations = {
-                    cmp = true,
-                    gitsigns = true,
-                    nvimtree = true,
-                    treesitter = true,
-                    which_key = true,
-                    indent_blankline = { enabled = true },
-                    native_lsp = {
-                        enabled = true,
-                        virtual_text = {
-                            errors = { "italic" },
-                            hints = { "italic" },
-                            warnings = { "italic" },
-                            information = { "italic" },
-                        },
-                        underlines = {
-                            errors = { "underline" },
-                            hints = { "underline" },
-                            warnings = { "underline" },
-                            information = { "underline" },
-                        },
-                    },
-                },
-            })
-            -- Colorscheme is now set by Themery
-        end,
-    },
-
     -- Status Line
     {
         "nvim-lualine/lualine.nvim",
