@@ -10,15 +10,24 @@ local function aggregate_theme_variants()
     local theme_definition_modules = {
         "config.themes.catppuccin",
         "config.themes.gruvbox",
-        -- Add "themes.your_other_theme" here
+        "config.themes.tokyonight",
+        "config.themes.nord",
+        "config.themes.kanagawa",
     }
 
     local all_variants = {}
     for _, module_name in ipairs(theme_definition_modules) do
         local ok, variants = pcall(require, module_name)
         if ok and type(variants) == "table" then
-            for _, variant in ipairs(variants) do
-                table.insert(all_variants, variant)
+            -- Check if the variants table has numeric indices (array-like)
+            -- This handles both formats: array of variants or single variant object
+            if #variants > 0 then
+                for _, variant in ipairs(variants) do
+                    table.insert(all_variants, variant)
+                end
+            else
+                -- It's a single variant object
+                table.insert(all_variants, variants)
             end
         else
             vim.notify("Failed to load theme definitions from: " .. module_name, vim.log.levels.WARN)

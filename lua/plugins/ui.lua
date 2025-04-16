@@ -4,8 +4,10 @@ return {
     -- == Themes ==
     -- Load individual theme plugin specifications
     require("plugins.themes.catppuccin"),
-    require("plugins.themes.gruvbox"), -- Example
-    -- require("plugins.your_other_theme"),
+    require("plugins.themes.gruvbox"),
+    require("plugins.themes.tokyonight"),
+    require("plugins.themes.nord"),
+    require("plugins.themes.kanagawa"),
 
     -- == Theme Manager ==
     {
@@ -13,8 +15,10 @@ return {
         -- Dependencies ensure themes are loaded before Themery's config runs
         dependencies = {
             "catppuccin/nvim",
-            "gruvbox-community/gruvbox", -- Example
-            -- Add other theme plugin sources here corresponding to plugins required above
+            "gruvbox-community/gruvbox",
+            -- "folke/tokyonight",
+            -- "shaunsingh/nord",
+            -- "rebelot/kanagawa",
         },
         priority = 1001, -- Ensure it loads after themes but config runs later
         -- The config function now simply calls the dedicated setup function
@@ -29,7 +33,7 @@ return {
         config = function()
             require("lualine").setup({
                 options = {
-                    theme = "catppuccin",
+                    theme = "everforest",
                     -- section_separators = { left = '', right = '' },
                     -- component_separators = { left = '', right = '' },
                     disabled_filetypes = {
