@@ -46,7 +46,7 @@ mv ~/.config/nvim ~/.config/nvim.bak
 
 ```bash
 # Clone this configuration
-git clone https://github.com/yourusername/nvim-config.git ~/.config/nvim
+git clone https://github.com/cssharsha/nvim-config.git ~/.config/nvim
 ```
 
 ### 3. Initial Launch
