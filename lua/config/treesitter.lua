@@ -26,10 +26,46 @@ require("nvim-treesitter.configs").setup({
     -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
     -- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
     -- Using this option may slow down your editor, and you may see some behavior differences.
-    additional_vim_regex_highlighting = false,
+    additional_vim_regex_highlighting = {
+      "markdown", -- Enable additional highlighting for markdown
+    },
   },
   indent = {
     enable = true, -- Enable Treesitter-based indentation
+  },
+  -- Enable highlighting of the current context
+  context_commentstring = {
+    enable = true,
+    enable_autocmd = false,
+  },
+  -- Highlight the node under cursor
+  incremental_selection = {
+    enable = true,
+    keymaps = {
+      init_selection = "<CR>",
+      node_incremental = "<CR>",
+      scope_incremental = "<S-CR>",
+      node_decremental = "<BS>",
+    },
+  },
+  -- Highlight the current context
+  playground = {
+    enable = true,
+    disable = {},
+    updatetime = 25, -- Debounced time for highlighting nodes in the playground from source code
+    persist_queries = false, -- Whether the query persists across vim sessions
+    keybindings = {
+      toggle_query_editor = 'o',
+      toggle_hl_groups = 'i',
+      toggle_injected_languages = 't',
+      toggle_anonymous_nodes = 'a',
+      toggle_language_display = 'I',
+      focus_language = 'f',
+      unfocus_language = 'F',
+      update = 'R',
+      goto_node = '<cr>',
+      show_help = '?',
+    },
   },
   -- Treesitter Text Objects configuration
   textobjects = {

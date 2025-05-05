@@ -253,17 +253,17 @@ return {
             words = { enabled = true },
         },
     },
-    {
-        "hachy/cmdpalette.nvim",
-        dependencies = {
-            "nvim-telescope/telescope.nvim",
-            "nvim-lua/plenary.nvim",
-        },
-        config = function()
-            require("cmdpalette").setup({
-                border = "rounded",
-            })
-        end,
-        vim.keymap.set("n", ":", "<Plug>(cmdpalette)"),
-    },
+    -- {
+    --     "hachy/cmdpalette.nvim",
+    --     dependencies = {
+    --         "nvim-telescope/telescope.nvim",
+    --         "nvim-lua/plenary.nvim",
+    --     },
+    --     config = function()
+    --         require("cmdpalette").setup({
+    --             border = "rounded",
+    --         })
+    --     end,
+    --     vim.keymap.set("n", ":", "<Plug>(cmdpalette)"),
+    -- },
 }

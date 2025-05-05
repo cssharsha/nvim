@@ -50,6 +50,34 @@ return {
                 'MeanderingProgrammer/render-markdown.nvim',
                 opts = {
                     file_types = { "markdown", "Avante" },
+                    -- Customize rendering options to work with Obsidian
+                    render_options = {
+                        -- Properly handle Obsidian-style wiki links
+                        wiki_link_pattern = "%[%[(.-)%]%]",
+                        wiki_link_replacement = function(text)
+                            return "🔗 " .. text
+                        end,
+                        -- Handle Obsidian callouts
+                        callout_pattern = "> %[!(%w+)%]",
+                        callout_replacement = function(callout_type)
+                            local icons = {
+                                note = "📝",
+                                info = "ℹ️",
+                                tip = "💡",
+                                warning = "⚠️",
+                                danger = "🚨",
+                                question = "❓",
+                                example = "📋",
+                                quote = "💬",
+                                summary = "📌",
+                                success = "✅",
+                                failure = "❌",
+                                bug = "🐛",
+                                todo = "📌",
+                            }
+                            return icons[string.lower(callout_type)] or "📌"
+                        end,
+                    },
                 },
                 ft = { "markdown", "Avante" },
             },

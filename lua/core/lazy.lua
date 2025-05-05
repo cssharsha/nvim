@@ -23,6 +23,7 @@ require("lazy").setup({
         { import = "plugins.ai" },
         { import = "plugins.dap" },
         { import = "plugins.utils" },
+        { import = "plugins.markdown" },
         -- Add any other plugin spec files here
     },
     -- Configure lazy.nvim options
@@ -45,4 +46,5 @@ require("lazy").setup({
     },
 })
 
+require("config.markdown")
 print("Lazy.nvim setup complete") -- For debugging
