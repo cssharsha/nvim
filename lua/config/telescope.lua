@@ -76,8 +76,8 @@ map("n", "<leader>fC", "<cmd>Telescope command_history<cr>", { desc = "Command H
 map("n", "<leader>f:", "<cmd>Telescope commands<cr>", { desc = "Find Commands" })
 -- VS Code style command palette with Ctrl+Shift+P
 map({ "n", "i" }, "<C-S-p>", "<cmd>Telescope commands<cr>", { desc = "Command Palette (VS Code style)" })
--- Alternative to command mode with :
-map("n", ":", "<cmd>Telescope commands<cr>", { desc = "Command Palette (replace :)" })
+-- -- Alternative to command mode with :
+-- map("n", ":", "<cmd>Telescope commands<cr>", { desc = "Command Palette (replace :)" })
 
 -- LSP specific searches
 map("n", "<leader>ls", "<cmd>Telescope lsp_document_symbols<cr>", { desc = "Document Symbols" })
@@ -100,81 +100,5 @@ local finders = require("telescope.finders")
 local conf = require("telescope.config").values
 local actions = require("telescope.actions")
 local action_state = require("telescope.actions.state")
-
--- Function to create a custom command picker with built-in Vim commands
-local vim_commands_picker = function(opts)
-  opts = opts or {}
-  
-  -- Common Vim commands to include
-  local vim_commands = {
-    { name = "w", desc = "Save current buffer" },
-    { name = "w!", desc = "Save current buffer forcefully" },
-    { name = "q", desc = "Quit current window" },
-    { name = "q!", desc = "Quit current window forcefully" },
-    { name = "wq", desc = "Save and quit" },
-    { name = "wa", desc = "Save all buffers" },
-    { name = "wall", desc = "Save all buffers" },
-    { name = "qa", desc = "Quit all windows" },
-    { name = "qall", desc = "Quit all windows" },
-    { name = "wqa", desc = "Save all buffers and quit" },
-    { name = "wqall", desc = "Save all buffers and quit" },
-    { name = "e", desc = "Edit a file" },
-    { name = "edit", desc = "Edit a file" },
-    { name = "bn", desc = "Go to next buffer" },
-    { name = "bnext", desc = "Go to next buffer" },
-    { name = "bp", desc = "Go to previous buffer" },
-    { name = "bprevious", desc = "Go to previous buffer" },
-    { name = "bd", desc = "Delete current buffer" },
-    { name = "bdelete", desc = "Delete current buffer" },
-    { name = "sp", desc = "Split window horizontally" },
-    { name = "split", desc = "Split window horizontally" },
-    { name = "vs", desc = "Split window vertically" },
-    { name = "vsplit", desc = "Split window vertically" },
-    { name = "tabnew", desc = "Create new tab" },
-    { name = "tabn", desc = "Go to next tab" },
-    { name = "tabnext", desc = "Go to next tab" },
-    { name = "tabp", desc = "Go to previous tab" },
-    { name = "tabprevious", desc = "Go to previous tab" },
-    { name = "tabc", desc = "Close current tab" },
-    { name = "tabclose", desc = "Close current tab" },
-    { name = "h", desc = "Open help" },
-    { name = "help", desc = "Open help" },
-    { name = "noh", desc = "Clear search highlighting" },
-    { name = "nohlsearch", desc = "Clear search highlighting" },
-    { name = "set number", desc = "Show line numbers" },
-    { name = "set nonumber", desc = "Hide line numbers" },
-    { name = "set wrap", desc = "Enable line wrapping" },
-    { name = "set nowrap", desc = "Disable line wrapping" },
-  }
-  
-  -- Create the picker
-  pickers.new(opts, {
-    prompt_title = "Vim Commands",
-    finder = finders.new_table {
-      results = vim_commands,
-      entry_maker = function(entry)
-        return {
-          value = entry.name,
-          display = entry.name .. " - " .. entry.desc,
-          ordinal = entry.name .. " " .. entry.desc,
-        }
-      end,
-    },
-    sorter = conf.generic_sorter(opts),
-    attach_mappings = function(prompt_bufnr, map)
-      actions.select_default:replace(function()
-        local selection = action_state.get_selected_entry()
-        actions.close(prompt_bufnr)
-        
-        -- Execute the selected command
-        vim.cmd(selection.value)
-      end)
-      return true
-    end,
-  }):find()
-end
-
--- Add keybinding for the vim commands picker
-map("n", "<leader>fV", vim_commands_picker, { desc = "Vim Built-in Commands" })
 
 print("Telescope config loaded")

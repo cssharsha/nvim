@@ -41,7 +41,7 @@ return {
     {
         "epwalsh/obsidian.nvim",
         version = "*", -- recommended, use latest release instead of latest commit
-        lazy = false, -- Ensure it loads regardless of filetype
+        lazy = false,  -- Ensure it loads regardless of filetype
         -- ft = "markdown", -- Removed to ensure it loads regardless of filetype
         dependencies = {
             -- Required dependencies
@@ -66,4 +66,11 @@ return {
             "ObsidianTomorrow",
         },
     },
+    {
+        "3rd/image.nvim",
+        build = false, -- so that it doesn't build the rock https://github.com/3rd/image.nvim/issues/91#issuecomment-2453430239
+        opts = {
+            processor = "magick_cli",
+        },
+    }
 }
