@@ -17,6 +17,9 @@ M.opts = {
         temperature = 0,
         max_tokens = 4096,
     },
+    mcp = {                  -- Some plugins group MCP options like this
+        auto_approve = false -- Recommended: set to false for manual approval
+    },
 }
 
 return M
