@@ -295,17 +295,28 @@ return {
             words = { enabled = true },
         },
     },
-    -- {
-    --     "hachy/cmdpalette.nvim",
-    --     dependencies = {
-    --         "nvim-telescope/telescope.nvim",
-    --         "nvim-lua/plenary.nvim",
-    --     },
-    --     config = function()
-    --         require("cmdpalette").setup({
-    --             border = "rounded",
-    --         })
-    --     end,
-    --     vim.keymap.set("n", ":", "<Plug>(cmdpalette)"),
-    -- },
+    {
+        'windwp/nvim-autopairs',
+        event = "InsertEnter", -- Load plugin when entering insert mode
+        opts = {
+            -- Configure options here if needed, e.g.:
+            -- check_ts = true, -- Enable treesitter integration (recommended)
+            -- ts_config = {
+            --   lua = {'string'},
+            --   javascript = {'template_string'},
+            --   java = false, -- Turn off for java
+            -- }
+            -- For default options, just `opts = {}` or omit `opts` works too
+        },
+        config = function(_, opts)
+            require("nvim-autopairs").setup(opts)
+            -- Optional: If you use nvim-cmp, configure autopairs integration
+            local cmp_autopairs = require('nvim-autopairs.completion.cmp')
+            local cmp = require('cmp')
+            cmp.event:on(
+                'confirm_done',
+                cmp_autopairs.on_confirm_done()
+            )
+        end,
+    }
 }
