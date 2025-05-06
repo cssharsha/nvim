@@ -5,6 +5,8 @@ Install these systemwide:
 - `luarocks`: [https://luarocks.org/](https://luarocks.org/)
 - `ripgrep`: [https://github.com/BurntSushi/ripgrep](https://github.com/BurntSushi/ripgrep?tab=readme-ov-file#installation)
 
+- `magick-cli`
+
 ## Post steps
 - Make sure you run `:Lazy Update`
 - Not required but do `:MasonInstallall`
