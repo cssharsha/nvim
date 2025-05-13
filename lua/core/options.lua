@@ -1,6 +1,8 @@
 -- ~/.config/nvim/lua/core/options.lua
 local opt = vim.opt -- Use local variable for options
 
+opt.shell = "/bin/bash"
+
 -- Line Numbers
 opt.relativenumber = true -- Show relative line numbers
 opt.number = true         -- Shows absolute line number on cursor line

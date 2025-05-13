@@ -3,8 +3,9 @@ local obsidian = require("obsidian")
 obsidian.setup({
     workspaces = {
         {
-            name = "try",
-            path = "~/Documents/SecBra",
+            -- Always modify when going to a new vault
+            name = "Notes",
+            path = "~/Documents/Notes",
         }
     },
     -- Specify the exact path to ripgrep executable

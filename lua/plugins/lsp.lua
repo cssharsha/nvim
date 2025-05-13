@@ -28,6 +28,7 @@ return {
                     "black",
                     "isort",
                     -- Add other tools like typescript-language-server, eslint_d, prettier if you use them
+                    "marksman",
                 },
             })
         end,

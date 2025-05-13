@@ -8,12 +8,16 @@ return {
     require("plugins.themes.tokyonight"),
     require("plugins.themes.nord"),
     require("plugins.themes.kanagawa"),
+    require("plugins.themes.ayu"),
     {
         "folke/zen-mode.nvim",
         opts = {
             -- your configuration comes here
             -- or leave it empty to use the default settings
             -- refer to the configuration section below
+        },
+        keys = {
+            { "<localleader>z", ":ZenMode<CR>", mode = "n", desc = "Zenmode" }
         }
     },
     {
@@ -318,5 +322,5 @@ return {
                 cmp_autopairs.on_confirm_done()
             )
         end,
-    }
+    },
 }

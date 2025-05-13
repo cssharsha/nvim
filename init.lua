@@ -1,5 +1,5 @@
 -- ~/.config/nvim/init.lua
-
+--
 -- Load core configurations first
 require("core.options")
 require("core.keymaps")               -- Load keymaps before plugins

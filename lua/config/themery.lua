@@ -13,6 +13,7 @@ local function aggregate_theme_variants()
         "config.themes.tokyonight",
         "config.themes.nord",
         "config.themes.kanagawa",
+        "config.themes.ayu",
     }
 
     local all_variants = {}
