@@ -118,6 +118,10 @@ return {
         },
         cmd = { "NvimTreeToggle", "NvimTreeFocus" },
         opts = {
+            update_focused_file = {
+                enable = true,
+                update_root = false, -- Optional: set to true if you want the tree root to change to the file's directory
+            },
             git = {
                 enable = true,
             },

@@ -5,7 +5,7 @@ obsidian.setup({
         {
             -- Always modify when going to a new vault
             name = "Notes",
-            path = "~/Documents/Notes",
+            path = "~/Documents/Notes/Notes",
         }
     },
     -- Specify the exact path to ripgrep executable
