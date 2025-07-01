@@ -2,16 +2,19 @@ return {
     {
         name = "Ayu Dark",
         colorscheme = "ayu", -- This is the command Themery will use (vim.cmd('colorscheme ayu'))
-        before = [[ vim.g.ayucolor = "dark" ]],
+        globalbefore = [[ vim.g.ayucolor = "dark" ]],
+        globalafter = [[ vim.g.ayucolor = "dark" ]],
     },
     {
         name = "Ayu Light",
         colorscheme = "ayu",
-        before = [[ vim.g.ayucolor = "light" ]],
+        globalbefore = [[ vim.g.ayucolor = "light" ]],
+        globalafter = [[ vim.g.ayucolor = "light" ]],
     },
     {
         name = "Ayu Mirage",
         colorscheme = "ayu",
-        before = [[ vim.g.ayucolor = "mirage" ]],
+        globalbefore = [[ vim.g.ayucolor = "mirage" ]],
+        globalafter = [[ vim.g.ayucolor = "mirage" ]],
     },
 }

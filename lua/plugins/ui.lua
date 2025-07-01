@@ -9,6 +9,12 @@ return {
     require("plugins.themes.nord"),
     require("plugins.themes.kanagawa"),
     require("plugins.themes.ayu"),
+    require("plugins.themes.nightfox"),
+    require("plugins.themes.onedark"),
+    require("plugins.themes.material"),
+    require("plugins.themes.vscode"),
+    require("plugins.themes.rose-pine"),
+    require("plugins.themes.dracula"),
     {
         "folke/zen-mode.nvim",
         opts = {
@@ -62,9 +68,16 @@ return {
         dependencies = {
             "catppuccin/nvim",
             "gruvbox-community/gruvbox",
-            -- "folke/tokyonight",
-            -- "shaunsingh/nord",
-            -- "rebelot/kanagawa",
+            "folke/tokyonight.nvim",
+            "shaunsingh/nord.nvim",
+            "rebelot/kanagawa.nvim",
+            "Shatur/neovim-ayu",
+            "EdenEast/nightfox.nvim",
+            "navarasu/onedark.nvim",
+            "marko-cerovac/material.nvim",
+            "Mofiqul/vscode.nvim",
+            "rose-pine/neovim",
+            "Mofiqul/dracula.nvim",
         },
         priority = 1001, -- Ensure it loads after themes but config runs later
         -- The config function now simply calls the dedicated setup function
@@ -79,7 +92,7 @@ return {
         config = function()
             require("lualine").setup({
                 options = {
-                    theme = "everforest",
+                    theme = "iceberg_dark",
                     -- section_separators = { left = '', right = '' },
                     -- component_separators = { left = '', right = '' },
                     disabled_filetypes = {
@@ -183,7 +196,7 @@ return {
         config = function()
             require("bufferline").setup({
                 options = {
-                    mode = "tabs",             -- Use actual Vim tabs
+                    mode = "buffers",          -- Show all open buffers
                     separator_style = "slant", -- Or 'arrow', 'padded_slant', etc.
                     diagnostics = "nvim_lsp",  -- Show LSP diagnostics
                     show_buffer_close_icons = true,

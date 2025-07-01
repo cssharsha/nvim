@@ -89,4 +89,20 @@ return {
             require("mcphub").setup()
         end,
     },
+    {
+        "olimorris/codecompanion.nvim",
+        opts = require("config.cc_ollama").opts,
+        dependencies = {
+            "nvim-lua/plenary.nvim",
+            "nvim-treesitter/nvim-treesitter",
+        },
+        keys = {
+            { "<leader>cc", "<cmd>CodeCompanionChat<cr>", desc = "CodeCompanion Chat", mode = { "n", "v" } },
+            { "<leader>ci", "<cmd>CodeCompanionActions<cr>", desc = "CodeCompanion Actions", mode = { "n", "v" } },
+            { "<leader>ct", "<cmd>CodeCompanionChat Toggle<cr>", desc = "CodeCompanion Toggle", mode = { "n", "v" } },
+            { "<leader>ca", "<cmd>CodeCompanionAdd<cr>", desc = "CodeCompanion Add", mode = "v" },
+            { "<C-a>", "<cmd>CodeCompanionActions<cr>", desc = "CodeCompanion Actions", mode = { "n", "v" } },
+            { "ga", "<cmd>CodeCompanionChat Add<cr>", desc = "Add to Chat", mode = "v" },
+        },
+    },
 }

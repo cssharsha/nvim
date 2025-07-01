@@ -14,6 +14,12 @@ local function aggregate_theme_variants()
         "config.themes.nord",
         "config.themes.kanagawa",
         "config.themes.ayu",
+        "config.themes.nightfox",
+        "config.themes.onedark",
+        "config.themes.material",
+        "config.themes.vscode",
+        "config.themes.rose-pine",
+        "config.themes.dracula",
     }
 
     local all_variants = {}
@@ -53,6 +59,7 @@ M.setup = function()
     themery.setup({
         themes = theme_variants,
         livePreview = true,
+        themeConfigFile = vim.fn.stdpath("config") .. "/lua/core/theme.lua",  -- Persistence file
         -- Add other themery options if needed
     })
 
