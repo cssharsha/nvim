@@ -24,6 +24,7 @@ require("lazy").setup({
         { import = "plugins.dap" },
         { import = "plugins.utils" },
         { import = "plugins.markdown" },
+        { import = "plugins.supermaven" },
         -- Add any other plugin spec files here
     },
     -- Configure lazy.nvim options
