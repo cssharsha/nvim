@@ -26,7 +26,11 @@ opt.guifont = "JetBrainsMono Nerd Font:h10" -- Font family and size (h14 = 14pt)
 -- opt.guifont = "FiraCode Nerd Font:h14"      -- Alternative font option
 
 -- Behavior
-opt.autoread = true           -- Automatically reload files when changed on disk
+vim.o.autoread = true
+vim.api.nvim_create_autocmd({ "BufEnter", "CursorHold", "CursorHoldI", "FocusGained" }, {
+  command = "if mode() != 'c' | checktime | endif",
+  pattern = { "*" },
+})
 opt.clipboard = "unnamedplus" -- Sync with system clipboard
 opt.mouse = "a"               -- Enable mouse support in all modes
 opt.splitright = true         -- Open vertical splits to the right
