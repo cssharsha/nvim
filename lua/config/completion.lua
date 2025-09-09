@@ -25,12 +25,15 @@ M.opts = {
 	},
 
 	-- (Default) Only show the documentation popup when manually triggered
-	completion = { documentation = { auto_show = false } },
+	completion = { documentation = { auto_show = true } },
+	signature = { enabled = true },
 
 	-- Default list of enabled providers defined so that you can extend it
 	-- elsewhere in your config, without redefining it, due to `opts_extend`
+	-- Add blink compat providers later if required
 	sources = {
-		default = { "lsp", "path", "snippets", "buffer" },
+		default = { "lsp", "path", "snippets", "buffer", "emoji" },
+		providers = require("config.cmpproviders").providers,
 	},
 
 	-- (Default) Rust fuzzy matcher for typo resistance and significantly better performance
