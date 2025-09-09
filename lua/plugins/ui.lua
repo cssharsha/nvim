@@ -206,20 +206,23 @@ return {
             })
         end,
     },
-
     -- Keymap Helper (shows available keymaps)
     {
         "folke/which-key.nvim",
         event = "VeryLazy", -- Load when needed
         config = function()
             require("which-key").setup({
-                -- your configuration comes here
-                -- or leave it empty to use the default settings
-                -- refer to the configuration section below
+              plugins = {
+                marks = true,
+                registers = true,
+                spelling = {
+                  enabled = true,
+                  suggestions = 20,
+                },
+              },
             })
         end
     },
-
     -- Icons
     { "nvim-tree/nvim-web-devicons", lazy = true },
 
@@ -230,67 +233,6 @@ return {
         opts = {
             -- options
             scope = { enabled = true },
-        },
-    },
-
-    -- Searchbox - Floating search UI
-    {
-        "VonHeikemen/searchbox.nvim",
-        dependencies = {
-            "MunifTanjim/nui.nvim"
-        },
-        config = function()
-            local searchbox = require("searchbox")
-
-            -- Key mappings for Searchbox
-            local map = vim.keymap.set
-            local opts = { noremap = true, silent = true }
-
-            -- Basic search
-            map("n", "<leader>s", function() searchbox.match_all() end,
-                { desc = "Search in buffer", unpack(opts) })
-
-            -- Search and replace
-            map("n", "<leader>r", function() searchbox.replace() end,
-                { desc = "Search and replace", unpack(opts) })
-
-            -- Search word under cursor
-            map("n", "<leader>sw", function() searchbox.match_all({ default_text = vim.fn.expand("<cword>") }) end,
-                { desc = "Search word under cursor", unpack(opts) })
-
-            -- Search in selection (visual mode)
-            map("v", "<leader>s", function() searchbox.match_all({ visual_mode = true }) end,
-                { desc = "Search in selection", unpack(opts) })
-
-            -- Replace in selection (visual mode)
-            map("v", "<leader>r", function() searchbox.replace({ visual_mode = true }) end,
-                { desc = "Replace in selection", unpack(opts) })
-
-            -- Search with regex
-            map("n", "<leader>sr", function() searchbox.match_all({ regex = true }) end,
-                { desc = "Search with regex", unpack(opts) })
-
-            -- Replace with regex
-            map("n", "<leader>rr", function() searchbox.replace({ regex = true }) end,
-                { desc = "Replace with regex", unpack(opts) })
-        end,
-    },
-    {
-        "folke/which-key.nvim",
-        event = "VeryLazy",
-        opts = {
-            -- your configuration comes here
-            -- or leave it empty to use the default settings
-            -- refer to the configuration section below
-        },
-        keys = {
-            {
-                "<leader>?",
-                function()
-                    require("which-key").show({ global = false })
-                end,
-                desc = "Buffer Local Keymaps (which-key)",
-            },
         },
     },
     {
