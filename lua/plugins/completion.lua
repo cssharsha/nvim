@@ -14,6 +14,7 @@ return {
 		dependencies = {
 			"rafamadriz/friendly-snippets",
 			"moyiz/blink-emoji.nvim",
+			"Kaiser-Yang/blink-cmp-avante",
 		},
 
 		-- use a release tag to download pre-built binaries

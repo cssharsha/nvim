@@ -29,7 +29,6 @@ require("lazy").setup({
 		-- Add any other plugin spec files here
 	},
 	-- Configure lazy.nvim options
-	install = { colorscheme = { "catppuccin" } }, -- Automatically set colorscheme after install
 	checker = { enabled = true, notify = false }, -- Check for updates daily
 	change_detection = { notify = false }, -- Don't notify on config changes
 	performance = {

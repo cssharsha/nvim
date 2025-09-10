@@ -32,7 +32,7 @@ M.opts = {
 	-- elsewhere in your config, without redefining it, due to `opts_extend`
 	-- Add blink compat providers later if required
 	sources = {
-		default = { "lsp", "path", "snippets", "buffer", "emoji" },
+		default = { "lsp", "path", "snippets", "buffer", "emoji", "avante" },
 		providers = require("config.cmpproviders").providers,
 	},
 

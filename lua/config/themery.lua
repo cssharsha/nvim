@@ -20,6 +20,7 @@ local function aggregate_theme_variants()
         "config.themes.vscode",
         "config.themes.rose-pine",
         "config.themes.dracula",
+        "config.themes.melange",
     }
 
     local all_variants = {}
