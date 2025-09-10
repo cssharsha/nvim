@@ -1,4 +1,3 @@
--- ~/.config/nvim/lua/core/keymaps.lua
 local map = vim.keymap.set
 local opts = { noremap = true, silent = true }
 
@@ -48,5 +47,9 @@ map("n", "<leader>>", "<C-w>>", { desc = "Increase window width" })
 map("n", "<S-l>", ":bnext<CR>", { desc = "Next buffer" })
 map("n", "<S-h>", ":bprevious<CR>", { desc = "Previous buffer" })
 map("n", "<leader>bd", ":bdelete<CR>", { desc = "Close current buffer" })
+
+-- Diagnostics
+map("n", "gl", function() vim.diagnostic.open_float() end,
+    {desc = "Open diagnostic in float"})
 
 print("Core keymaps loaded") -- For debugging

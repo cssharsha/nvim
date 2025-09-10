@@ -1,90 +1,47 @@
--- ~/.config/nvim/lua/config/completion.lua
-local cmp = require("cmp")
-local luasnip = require("luasnip")
-local lspkind = require("lspkind")
+local M = {}
 
--- Load snippets
-require("luasnip.loaders.from_vscode").lazy_load()
--- Load custom snippets (optional)
--- require("luasnip.loaders.from_snipmate").lazy_load({ paths = vim.fn.stdpath("config") .. "/snippets" })
+M.opts = {
+	-- 'default' (recommended) for mappings similar to built-in completions (C-y to accept)
+	-- 'super-tab' for mappings similar to vscode (tab to accept)
+	-- 'enter' for enter to accept
+	-- 'none' for no mappings
+	--
+	-- All presets have the following mappings:
+	-- C-space: Open menu or open docs if already open
+	-- C-n/C-p or Up/Down: Select next/previous item
+	-- C-e: Hide menu
+	-- C-k: Toggle signature help (if signature.enabled = true)
+	--
+	-- See :h blink-cmp-config-keymap for defining your own keymap
+	keymap = {
+		preset = "default",
+		["<C-z>"] = { "accept", "fallback" },
+	},
 
-luasnip.config.setup({})
+	appearance = {
+		-- 'mono' (default) for 'Nerd Font Mono' or 'normal' for 'Nerd Font'
+		-- Adjusts spacing to ensure icons are aligned
+		nerd_font_variant = "mono",
+	},
 
-cmp.setup({
-    snippet = {
-        expand = function(args)
-            luasnip.lsp_expand(args.body)
-        end,
-    },
-    completion = {
-        completeopt = "menu,menuone,noinsert",
-    },
-    -- Keybindings for completion
-    mapping = cmp.mapping.preset.insert({
-        ["<C-n>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }), -- Select next item
-        ["<C-p>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }), -- Select previous item
-        ["<C-b>"] = cmp.mapping.scroll_docs(-4),                                        -- Scroll backward in documentation
-        ["<C-f>"] = cmp.mapping.scroll_docs(4),                                         -- Scroll forward in documentation
-        ["<C-Space>"] = cmp.mapping.complete(),                                         -- Trigger completion
-        ["<C-e>"] = cmp.mapping.abort(),                                                -- Abort completion
-        ["<CR>"] = cmp.mapping.confirm({ select = true }),                              -- Confirm selection
+	-- (Default) Only show the documentation popup when manually triggered
+	completion = { documentation = { auto_show = true } },
+	signature = { enabled = true },
 
-        -- Snippet navigation
-        ["<Tab>"] = cmp.mapping(function(fallback)
-            if cmp.visible() then
-                cmp.select_next_item()
-            elseif luasnip.expand_or_jumpable() then
-                luasnip.expand_or_jump()
-            else
-                fallback()
-            end
-        end, { "i", "s" }), -- i = insert mode, s = select mode
-        ["<S-Tab>"] = cmp.mapping(function(fallback)
-            if cmp.visible() then
-                cmp.select_prev_item()
-            elseif luasnip.jumpable(-1) then
-                luasnip.jump(-1)
-            else
-                fallback()
-            end
-        end, { "i", "s" }),
-    }),
-    -- Completion sources
-    sources = cmp.config.sources({
-        { name = "nvim_lsp" },
-        { name = "luasnip" },
-        { name = "buffer" },
-        { name = "path" },
-        { name = "nvim_lua" }, -- Source for Neovim Lua API
-    }),
-    -- Formatting with lspkind icons
-    formatting = {
-        format = lspkind.cmp_format({
-            maxwidth = 50,
-            ellipsis_char = "...",
-            before = function(entry, vim_item)
-                -- Get the kind icon and text for the completion item
-                vim_item.kind = lspkind.presets.default[vim_item.kind] .. " " .. vim_item.kind
-                return vim_item
-            end,
-        }),
-    },
-    -- Command line completion
-    cmdline = {
-        ["/"] = { -- Search command line
-            mapping = cmp.mapping.preset.cmdline(),
-            sources = cmp.config.sources({
-                { name = "buffer" },
-            }),
-        },
-        [":"] = { -- Command line
-            mapping = cmp.mapping.preset.cmdline(),
-            sources = cmp.config.sources({
-                { name = "path" },
-                { name = "cmdline" },
-            }),
-        },
-    },
-})
+	-- Default list of enabled providers defined so that you can extend it
+	-- elsewhere in your config, without redefining it, due to `opts_extend`
+	-- Add blink compat providers later if required
+	sources = {
+		default = { "lsp", "path", "snippets", "buffer", "emoji", "avante" },
+		providers = require("config.cmpproviders").providers,
+	},
 
-print("Nvim-cmp config loaded")
+	-- (Default) Rust fuzzy matcher for typo resistance and significantly better performance
+	-- You may use a lua implementation instead by using `implementation = "lua"` or fallback to the lua implementation,
+	-- when the Rust fuzzy matcher is not available, by using `implementation = "prefer_rust"`
+	--
+	-- See the fuzzy documentation for more information
+	fuzzy = { implementation = "prefer_rust_with_warning" },
+}
+
+return M

@@ -7,7 +7,7 @@ return {
     cmd = { "ConformInfo" },
     dependencies = { "mason.nvim" }, -- To install formatters
     config = function()
-      require("config.conform")
+      require("config.conform").setup()
     end,
   },
 
@@ -17,7 +17,7 @@ return {
     event = { "BufWritePost", "BufReadPost", "InsertLeave" }, -- Lint on save, load, and leaving insert mode
     dependencies = { "mason.nvim" }, -- To install linters
     config = function()
-      require("config.lint")
+      require("config.lint").setup()
     end,
   },
 }
