@@ -21,6 +21,7 @@ local function aggregate_theme_variants()
         "config.themes.rose-pine",
         "config.themes.dracula",
         "config.themes.melange",
+        "config.themes.solarized",
     }
 
     local all_variants = {}

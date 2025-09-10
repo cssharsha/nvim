@@ -16,6 +16,7 @@ return {
     require("plugins.themes.rose-pine"),
     require("plugins.themes.dracula"),
     require("plugins.themes.melange"),
+    require("plugins.themes.solarized"),
     {
         "folke/zen-mode.nvim",
         opts = {
@@ -80,6 +81,7 @@ return {
             "rose-pine/neovim",
             "Mofiqul/dracula.nvim",
             "savq/melange-nvim",
+            "ishan9299/nvim-solarized-lua",
         },
         priority = 1001, -- Ensure it loads after themes but config runs later
         -- The config function now simply calls the dedicated setup function
