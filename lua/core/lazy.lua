@@ -25,6 +25,7 @@ require("lazy").setup({
 		{ import = "plugins.markdown" },
 		-- { import = "plugins.parrot" },
 		{ import = "plugins.avante" },
+		{ import = "plugins.supermaven" },
 		-- Add any other plugin spec files here
 	},
 	-- Configure lazy.nvim options
