@@ -61,3 +61,13 @@ if vim.fn.isdirectory(undo_path) == 0 then
     print("Attempting to create undo directory:", undo_path) -- Optional: Keep for one more test run
     vim.fn.mkdir(undo_path, "p")
 end
+
+-- Force transparency for all colorschemes (90% opacity)
+vim.api.nvim_create_autocmd("ColorScheme", {
+    pattern = "*",
+    callback = function()
+        vim.api.nvim_set_hl(0, "Normal", { bg = "none", blend = 10 })
+        vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none", blend = 10 })
+        vim.api.nvim_set_hl(0, "NormalNC", { bg = "none", blend = 10 })
+    end,
+})

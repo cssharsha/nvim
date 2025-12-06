@@ -49,7 +49,10 @@ map("n", "<S-h>", ":bprevious<CR>", { desc = "Previous buffer" })
 map("n", "<leader>bd", ":bdelete<CR>", { desc = "Close current buffer" })
 
 -- Diagnostics
-map("n", "gl", function() vim.diagnostic.open_float() end,
-    {desc = "Open diagnostic in float"})
+map("n", "gl", function()
+	vim.diagnostic.open_float()
+end, { desc = "Open diagnostic in float" })
+
+map("v", "<leader>y", '"+y', opts)
 
 print("Core keymaps loaded") -- For debugging

@@ -28,6 +28,22 @@ return {
             { "<localleader>z", ":ZenMode<CR>", mode = "n", desc = "Zenmode" }
         }
     },
+    -- No Neck Pain - Center code for distraction-free coding
+    {
+        "shortcuts/no-neck-pain.nvim",
+        version = "*",
+        opts = {
+            width = 120,
+            autocmds = {
+                enableOnVimEnter = false,
+            },
+        },
+        keys = {
+            { "<leader>nn", "<cmd>NoNeckPain<cr>", desc = "Toggle No Neck Pain" },
+            { "<leader>nnw", "<cmd>NoNeckPainWidthUp<cr>", desc = "Increase No Neck Pain Width" },
+            { "<leader>nns", "<cmd>NoNeckPainWidthDown<cr>", desc = "Decrease No Neck Pain Width" },
+        }
+    },
     {
         "folke/noice.nvim",
         event = "VeryLazy",
@@ -285,5 +301,61 @@ return {
                 cmp_autopairs.on_confirm_done()
             )
         end,
+    },
+    -- Window Focus Management
+    {
+        'nvim-focus/focus.nvim',
+        version = '*',
+        config = function()
+            require("focus").setup({
+                enable = true,
+                commands = true,
+                autoresize = {
+                    enable = true,
+                    width = 0,      -- 0 uses golden ratio
+                    height = 0,
+                    minwidth = 0,
+                    minheight = 0,
+                    height_quickfix = 10,
+                },
+                split = {
+                    bufnew = false, -- Don't create blank buffer in new splits
+                    tmux = false,
+                },
+                ui = {
+                    number = false,
+                    relativenumber = false,
+                    hybridnumber = false,
+                    absolutenumber_unfocussed = false,
+                    cursorline = true,
+                    cursorcolumn = false,
+                    colorcolumn = {
+                        enable = false,
+                    },
+                    signcolumn = true,
+                    winhighlight = false,
+                },
+            })
+
+            -- Disable for specific filetypes
+            local ignore_filetypes = { 'NvimTree', 'toggleterm' }
+            local augroup = vim.api.nvim_create_augroup('FocusDisable', { clear = true })
+
+            vim.api.nvim_create_autocmd('FileType', {
+                group = augroup,
+                callback = function(_)
+                    if vim.tbl_contains(ignore_filetypes, vim.bo.filetype) then
+                        vim.b.focus_disable = true
+                    end
+                end,
+                desc = 'Disable focus autoresize for specific filetypes',
+            })
+        end,
+        keys = {
+            { "<leader>wt", "<cmd>FocusToggle<cr>", desc = "Toggle Focus" },
+            { "<leader>wm", "<cmd>FocusMaxOrEqual<cr>", desc = "Toggle Max/Equal Windows" },
+            { "<leader>we", "<cmd>FocusEqualise<cr>", desc = "Equalize Windows" },
+            { "<leader>ws", "<cmd>FocusSplitNicely<cr>", desc = "Split Nicely (Golden Ratio)" },
+        }
     },
 }
